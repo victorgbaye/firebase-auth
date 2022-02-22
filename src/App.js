@@ -1,7 +1,7 @@
 import {useState} from 'react'
 import {createUserWithEmailAndPassword, onAuthStateChanged,signInWithEmailAndPassword, signOut} from "firebase/auth"
 import './App.css';
-import {auth, } from "./firebase-config"
+import {auth, signInWithGoogle} from "./firebase-config"
 
 function App() {
   const [registerEmail, setRegisterEmail] = useState("")
@@ -57,6 +57,14 @@ function App() {
         value={registerPassword}
         onChange={(e)=>setRegisterPassword(e.target.value)}/>
        <button onClick={register}>Register</button>
+     </div>
+     <div>
+       <button onClick={signInWithGoogle}>Sign in with Gogle</button>
+        {user && <div>
+          <h1>{localStorage.getItem("name")}</h1>
+          <h1>{localStorage.getItem("email")}</h1>
+          <img src={localStorage.getItem("profilePic")} />
+        </div>}
      </div>
      <div>
        <h3>Login</h3>
